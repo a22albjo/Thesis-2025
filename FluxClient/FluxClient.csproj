@@ -19,11 +19,11 @@
     <PackageReference Include="Fluxor" Version="6.1.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="6.1.0" />
   </ItemGroup>
-
   <ItemGroup>
     <None Remove="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+
 </Project>
