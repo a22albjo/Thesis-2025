@@ -1,2 +1,18 @@
-﻿<h3>Operators table</h3>
+﻿@using Fluxor.Blazor.Web.Components
+@using FluxClient.Models
 
+@inherits FluxorComponent
+
+<h3>Operators table</h3>
+
+<MudDataGrid T="OperatorModel" Items=OperatorState.Value.Operators Style="width:95%" Height="75vh" FixedHeader="true"
+             Bordered="true" Dense="true" >
+    <Columns>
+        <PropertyColumn Property="x => x.OpId" Title="Operator Id" />
+        <PropertyColumn Property="x => x.OpName" Title="Operator Name" />
+        <PropertyColumn Property="x => x.Access1" Title="Access 1" />
+        <PropertyColumn Property="x => x.Access2" Title="Access 2" />
+        <PropertyColumn Property="x => x.Access3" Title="Access 3" />
+        <PropertyColumn Property="x => x.Description" Title="Description" />
+    </Columns>
+</MudDataGrid>
