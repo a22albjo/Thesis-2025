@@ -1,4 +1,4 @@
-﻿namespace MVVMClient.Models
+﻿namespace FluxClient.Models
 {
     public record OperatorModel
     {
