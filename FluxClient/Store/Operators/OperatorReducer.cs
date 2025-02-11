@@ -17,5 +17,27 @@ namespace FluxClient.Store.Operators
                 Operators = builder.ToImmutableList()
             };
         }
+
+        [ReducerMethod]
+        public static OperatorsState ReduceAddOperatorAction(OperatorsState state, AddOperatorAction action)
+        {
+            var newOperator = new OperatorModel
+            {
+                Id = action.Operator.Id,
+                OpId = action.Operator.OpId,
+                OpName = action.Operator.OpName,
+                Description = action.Operator.Description,
+                Access1 = action.Operator.Access1,
+                Access2 = action.Operator.Access2,
+                Access3 = action.Operator.Access3,
+                ChangedBy = "config-client",
+                ChangedTime = DateTime.Now,
+                SelectedToBeDeleted = false,
+            };
+
+            var updatedOperatorsList = state.Operators.Add(newOperator);
+
+            return state with { Operators = updatedOperatorsList };
+        }
     }
 }

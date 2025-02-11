@@ -8,6 +8,8 @@
         public bool Access1 { get; set; }
         public bool Access2 { get; set; }
         public bool Access3 { get; set; }
+        public string? ChangedBy { get; set; }
+        public DateTime ChangedTime { get; set; }
         public string? Description { get; set; }
         public bool SelectedToBeDeleted { get; set; } = false;
     }

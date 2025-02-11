@@ -2,6 +2,7 @@
 using FluxClient.Store.Operators;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
+using FluxClient.Models;
 
 namespace FluxClient.Components
 {
@@ -20,6 +21,23 @@ namespace FluxClient.Components
                 Dispatcher.Dispatch(new OperatorsFetchInitialDataAction());
             }
             return base.OnInitializedAsync();
+        }
+
+        private void AddOperator()
+        {
+            Dispatcher.Dispatch(new AddOperatorAction
+            {
+                Operator = new OperatorModel
+                {
+                    Id = Guid.NewGuid(),
+                    OpId = "New",
+                    OpName = "New",
+                    SelectedToBeDeleted = false,
+                    Access1 = false,
+                    Access2 = false,
+                    Access3 = false
+                }
+            });
         }
     }
 }

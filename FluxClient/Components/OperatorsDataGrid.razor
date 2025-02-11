@@ -5,6 +5,7 @@
 
 <h3>Operators table</h3>
 
+<MudButton OnClick="AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
 <MudDataGrid T="OperatorModel" Items=OperatorState.Value.Operators Style="width:95%" Height="75vh" FixedHeader="true"
              Bordered="true" Dense="true" >
     <Columns>

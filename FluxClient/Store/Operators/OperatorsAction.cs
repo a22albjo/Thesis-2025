@@ -7,3 +7,8 @@ public class OperatorsListReceivedAction
 {
     public List<OperatorModel> OperatorsList { get; set; } = new List<OperatorModel>();
 }
+
+public class AddOperatorAction
+{
+    public required OperatorModel Operator { get; set; }
+}
