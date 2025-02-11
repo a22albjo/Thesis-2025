@@ -47,6 +47,11 @@ namespace FluxClient.Components
                 Id = id
             });
         }
+
+        private void RemoveSelectedOperators()
+        {
+            Dispatcher.Dispatch(new RemoveSelectedOperatorsAction());
+        }
     }
 }
 

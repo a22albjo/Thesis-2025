@@ -17,3 +17,5 @@ public class ToggleSelectedToBeDeletedCheckboxAction
 {
     public Guid Id { get; set; }
 };
+
+public class RemoveSelectedOperatorsAction { }

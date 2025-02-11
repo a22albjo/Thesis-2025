@@ -51,5 +51,14 @@ namespace FluxClient.Store.Operators
 
             return state with { Operators = newOperatorsState };
         }
+
+        [ReducerMethod]
+        public static OperatorsState ReduceRemoveSelectedOperatorAction(OperatorsState state, RemoveSelectedOperatorsAction action)
+        {
+
+            var newOperatorsState = state.Operators.Where(op => !op.SelectedToBeDeleted).ToImmutableList();
+
+            return state with { Operators = newOperatorsState };
+        }
     }
 }
