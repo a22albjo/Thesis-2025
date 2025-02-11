@@ -19,3 +19,8 @@ public class ToggleSelectedToBeDeletedCheckboxAction
 };
 
 public class RemoveSelectedOperatorsAction { }
+
+public class ChangeOperatorAction
+{
+    public required OperatorModel Operator { get; set; }
+}

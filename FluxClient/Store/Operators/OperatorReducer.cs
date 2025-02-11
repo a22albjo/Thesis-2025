@@ -45,6 +45,8 @@ namespace FluxClient.Store.Operators
         {
             var itemToUpdate = state.Operators.FirstOrDefault(x => x.Id == action.Id);
 
+            if (itemToUpdate == null) return state;
+
             var updatedItem = itemToUpdate with { SelectedToBeDeleted = !itemToUpdate.SelectedToBeDeleted };
 
             var newOperatorsState = state.Operators.Replace(itemToUpdate, updatedItem);
@@ -57,6 +59,18 @@ namespace FluxClient.Store.Operators
         {
 
             var newOperatorsState = state.Operators.Where(op => !op.SelectedToBeDeleted).ToImmutableList();
+
+            return state with { Operators = newOperatorsState };
+        }
+
+        [ReducerMethod]
+        public static OperatorsState ReduceChangeOperatorAction(OperatorsState state, ChangeOperatorAction action)
+        {
+            var itemToUpdate = state.Operators.FirstOrDefault(x => x.Id == action.Operator.Id);
+
+            if (itemToUpdate == null) return state;
+
+            var newOperatorsState = state.Operators.Replace(itemToUpdate, action.Operator);
 
             return state with { Operators = newOperatorsState };
         }

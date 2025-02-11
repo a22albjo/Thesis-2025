@@ -14,6 +14,8 @@ namespace FluxClient.Components
         [Inject]
         public required IState<OperatorsState> OperatorState { get; set; }
 
+        private OperatorModel? _editingOperator;
+
         protected override Task OnInitializedAsync()
         {
             if (OperatorState.Value.Operators.Count == 0)
@@ -52,6 +54,47 @@ namespace FluxClient.Components
         {
             Dispatcher.Dispatch(new RemoveSelectedOperatorsAction());
         }
+
+        private void StartEditing(OperatorModel operatorData)
+        {
+            _editingOperator = new OperatorModel
+            {
+                Id = operatorData.Id,
+                OpId = operatorData.OpId,
+                OpName = operatorData.OpName,
+                SelectedToBeDeleted = operatorData.SelectedToBeDeleted,
+                Access1 = operatorData.Access1,
+                Access2 = operatorData.Access2,
+                Access3 = operatorData.Access3,
+                Description = operatorData.Description
+            };
+        }
+
+        private void CancelEditing()
+        {
+            _editingOperator = null;
+        }
+
+        private void SaveChanges()
+        {
+            if (_editingOperator == null) return;
+
+            Dispatcher.Dispatch(new ChangeOperatorAction
+            {
+                Operator = new OperatorModel
+                {
+                    Id = _editingOperator.Id,
+                    OpId = _editingOperator.OpId,
+                    OpName = _editingOperator.OpName,
+                    SelectedToBeDeleted = _editingOperator.SelectedToBeDeleted,
+                    Access1 = _editingOperator.Access1,
+                    Access2 = _editingOperator.Access2,
+                    Access3 = _editingOperator.Access3,
+                    Description = _editingOperator.Description
+                }
+            });
+
+            _editingOperator = null;
+        }
     }
 }
-

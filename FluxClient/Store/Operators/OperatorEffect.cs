@@ -19,6 +19,8 @@ public class OperatorsEffect
     {
         var operatorsResponse = await _httpclient.GetFromJsonAsync<List<OperatorModel>>("https://localhost:7200/Operator");
 
+        if (operatorsResponse == null) return;
+
         var operatorsList = operatorsResponse.Select(x => new OperatorModel
         {
             Id = x.Id,
