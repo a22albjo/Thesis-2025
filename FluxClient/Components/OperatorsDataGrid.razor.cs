@@ -39,6 +39,14 @@ namespace FluxClient.Components
                 }
             });
         }
+
+        private void ToggleSelectedToBeDeletedCheckbox(Guid id)
+        {
+            Dispatcher.Dispatch(new ToggleSelectedToBeDeletedCheckboxAction
+            {
+                Id = id
+            });
+        }
     }
 }
 

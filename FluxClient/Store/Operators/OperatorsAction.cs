@@ -12,3 +12,8 @@ public class AddOperatorAction
 {
     public required OperatorModel Operator { get; set; }
 }
+
+public class ToggleSelectedToBeDeletedCheckboxAction
+{
+    public Guid Id { get; set; }
+};

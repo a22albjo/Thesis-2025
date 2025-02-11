@@ -7,13 +7,30 @@
 
 <MudButton OnClick="AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
 <MudDataGrid T="OperatorModel" Items=OperatorState.Value.Operators Style="width:95%" Height="75vh" FixedHeader="true"
-             Bordered="true" Dense="true" >
+             Bordered="true" Dense="true">
     <Columns>
+        <PropertyColumn Property="x => x.SelectedToBeDeleted" Title="Select">
+            <CellTemplate>
+                <MudCheckBox Value="context.Item.SelectedToBeDeleted" ValueChanged="@((bool isChecked) => ToggleSelectedToBeDeletedCheckbox(context.Item.Id))" />
+            </CellTemplate>
+        </PropertyColumn>
         <PropertyColumn Property="x => x.OpId" Title="Operator Id" />
         <PropertyColumn Property="x => x.OpName" Title="Operator Name" />
-        <PropertyColumn Property="x => x.Access1" Title="Access 1" />
-        <PropertyColumn Property="x => x.Access2" Title="Access 2" />
-        <PropertyColumn Property="x => x.Access3" Title="Access 3" />
+        <PropertyColumn Property="x => x.Access1" Title="Access 1">
+            <CellTemplate>
+                <MudCheckBox Value="context.Item.Access1" ReadOnly="true" />
+            </CellTemplate>
+        </PropertyColumn>
+        <PropertyColumn Property="x => x.Access2" Title="Access 2">
+            <CellTemplate>
+                <MudCheckBox Value="context.Item.Access2" ReadOnly="true" />
+            </CellTemplate>
+        </PropertyColumn>
+        <PropertyColumn Property="x => x.Access3" Title="Access 3">
+            <CellTemplate>
+                <MudCheckBox Value="context.Item.Access3" ReadOnly="true" />
+            </CellTemplate>
+        </PropertyColumn>
         <PropertyColumn Property="x => x.Description" Title="Description" />
     </Columns>
 </MudDataGrid>

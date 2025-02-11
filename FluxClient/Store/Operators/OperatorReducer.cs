@@ -39,5 +39,17 @@ namespace FluxClient.Store.Operators
 
             return state with { Operators = updatedOperatorsList };
         }
+
+        [ReducerMethod]
+        public static OperatorsState ReduceToggleSelectedToBeDeletedCheckboxAction(OperatorsState state, ToggleSelectedToBeDeletedCheckboxAction action)
+        {
+            var itemToUpdate = state.Operators.FirstOrDefault(x => x.Id == action.Id);
+
+            var updatedItem = itemToUpdate with { SelectedToBeDeleted = !itemToUpdate.SelectedToBeDeleted };
+
+            var newOperatorsState = state.Operators.Replace(itemToUpdate, updatedItem);
+
+            return state with { Operators = newOperatorsState };
+        }
     }
 }
