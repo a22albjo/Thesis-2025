@@ -1,9 +1,7 @@
-﻿
-namespace MVVMClient.Components
+﻿namespace MVVMClient.Components
 {
     public partial class OperatorsTable
     {
         
     }
 }
-

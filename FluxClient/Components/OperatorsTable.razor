@@ -3,13 +3,13 @@
 
 @inherits FluxorComponent
 
-<h3>Operators table</h3>
+<h3 style="margin-top:20px">Operators table</h3>
 
 <MudButton OnClick="AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
-<MudTable T="OperatorModel" Items=@OperatorState.Value.Operators Style="width:95%" FixedHeader="true"
+<MudTable T="OperatorModel" Items=@OperatorState.Value.Operators FixedHeader="true"
           Bordered="true" Dense="true" Hover="true" CanCancelEdit="true" EditTrigger="TableEditTrigger.EditButton"
           SortLabel="Sort By" CommitEditTooltip="Commit Edit" OnCommitEditClick="SaveChanges"
-          RowEditCancel="CancelEditing" RowEditPreview="StartEditing">
+          RowEditCancel="CancelEditing" RowEditPreview="StartEditing" >
     <ColGroup>
         <col style="width:50px;" />
     </ColGroup>
