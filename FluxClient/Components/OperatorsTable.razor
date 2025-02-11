@@ -1,0 +1,72 @@
+﻿@using Fluxor.Blazor.Web.Components
+@using FluxClient.Models
+
+@inherits FluxorComponent
+
+<h3>Operators table</h3>
+
+<MudButton OnClick="AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
+<MudTable T="OperatorModel" Items=@OperatorState.Value.Operators Style="width:95%" FixedHeader="true"
+          Bordered="true" Dense="true" Hover="true" CanCancelEdit="true" EditTrigger="TableEditTrigger.EditButton"
+          SortLabel="Sort By" CommitEditTooltip="Commit Edit" OnCommitEditClick="SaveChanges"
+          RowEditCancel="CancelEditing" RowEditPreview="StartEditing">
+    <ColGroup>
+        <col style="width:50px;" />
+    </ColGroup>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.SelectedToBeDeleted)"></MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.OpId)">Id</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.OpName)">Name</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Access1)">Access 1</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Access2)">Access 2</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Access3)">Access 3</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Description)">Description</MudTableSortLabel></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Select">
+            <MudCheckBox Value="context.SelectedToBeDeleted" ValueChanged="@((bool isChecked) => ToggleSelectedToBeDeletedCheckbox(context.Id))" />
+        </MudTd>
+        <MudTd DataLabel="Id">@context.OpId</MudTd>
+        <MudTd DataLabel="Name">@context.OpName</MudTd>
+        <MudTd DataLabel="Access 1">
+            <MudCheckBox Value="context.Access1" ReadOnly="true" />
+        </MudTd>
+        <MudTd DataLabel="Access 2">
+            <MudCheckBox Value="context.Access2" ReadOnly="true" />
+        </MudTd>
+        <MudTd DataLabel="Access 3">
+            <MudCheckBox Value="context.Access3" ReadOnly="true" />
+        </MudTd>
+        <MudTd DataLabel="Description">@context.Description</MudTd>
+    </RowTemplate>
+    <RowEditingTemplate>
+        <MudTd>
+            <MudCheckBox Value="context.SelectedToBeDeleted" ValueChanged="@((bool isChecked) => ToggleSelectedToBeDeletedCheckbox(context.Id))" />
+        </MudTd>
+        <MudTd DataLabel="Id">
+            <MudTextField @bind-Value="_editingOperator.OpId" Style="font-size:14px" />
+        </MudTd>
+        <MudTd DataLabel="Name">
+            <MudTextField @bind-Value="_editingOperator.OpName" Style="font-size:14px" />
+        </MudTd>
+        <MudTd DataLabel="Access 1">
+            <MudCheckBox @bind-Value="_editingOperator.Access1" />
+        </MudTd>
+        <MudTd DataLabel="Access 2">
+            <MudCheckBox @bind-Value="_editingOperator.Access2" />
+        </MudTd>
+        <MudTd DataLabel="Access 3">
+            <MudCheckBox @bind-Value="_editingOperator.Access3" />
+        </MudTd>
+        <MudTd DataLabel="Description">
+            <MudTextField @bind-Value="_editingOperator.Description" Style="font-size:14px" />
+        </MudTd>
+    </RowEditingTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+    <EditButtonContent Context="button">
+        <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Class="pa-0" OnClick="@button.ButtonAction" Disabled="@button.ButtonDisabled" />
+    </EditButtonContent>
+</MudTable>
+<MudButton OnClick="RemoveSelectedOperators" Color="@Color.Error" Class="remove-item-btn">Remove Selected Operators</MudButton>

@@ -6,7 +6,7 @@ using FluxClient.Models;
 
 namespace FluxClient.Components
 {
-    public partial class OperatorsDataGrid
+    public partial class OperatorsTable
     {
         [Inject]
         public required IDispatcher Dispatcher { get; set; }
@@ -55,22 +55,22 @@ namespace FluxClient.Components
             Dispatcher.Dispatch(new RemoveSelectedOperatorsAction());
         }
 
-        private void StartEditing(OperatorModel operatorData)
+        private void StartEditing(object operatorData)
         {
             _editingOperator = new OperatorModel
             {
-                Id = operatorData.Id,
-                OpId = operatorData.OpId,
-                OpName = operatorData.OpName,
-                SelectedToBeDeleted = operatorData.SelectedToBeDeleted,
-                Access1 = operatorData.Access1,
-                Access2 = operatorData.Access2,
-                Access3 = operatorData.Access3,
-                Description = operatorData.Description
+                Id = ((OperatorModel)operatorData).Id,
+                OpId = ((OperatorModel)operatorData).OpId,
+                OpName = ((OperatorModel)operatorData).OpName,
+                SelectedToBeDeleted = ((OperatorModel)operatorData).SelectedToBeDeleted,
+                Access1 = ((OperatorModel)operatorData).Access1,
+                Access2 = ((OperatorModel)operatorData).Access2,
+                Access3 = ((OperatorModel)operatorData).Access3,
+                Description = ((OperatorModel)operatorData).Description
             };
         }
 
-        private void CancelEditing()
+        private void CancelEditing(object operatorData)
         {
             _editingOperator = null;
         }

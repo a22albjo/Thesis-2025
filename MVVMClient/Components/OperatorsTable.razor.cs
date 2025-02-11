@@ -1,7 +1,7 @@
 ﻿
 namespace MVVMClient.Components
 {
-    public partial class OperatorsDataGrid
+    public partial class OperatorsTable
     {
         
     }
