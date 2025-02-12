@@ -1,1 +1,38 @@
-﻿<h3 style="margin-top:20px">Operators table</h3>
+﻿@using MVVMClient.Models
+@inject IOperatorsViewModel OperatorsViewModel
+
+<h3 style="margin-top:20px">Operators Table</h3>
+
+<MudTable T="OperatorModel" Items=@OperatorsViewModel.OperatorsData FixedHeader="true"
+          Bordered="true" Dense="true" Hover="true" CanCancelEdit="true" EditTrigger="TableEditTrigger.EditButton"
+          SortLabel="Sort By" CommitEditTooltip="Commit Edit" >
+    <ColGroup>
+        <col style="width:50px;" />
+    </ColGroup>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.SelectedToBeDeleted)"></MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.OpId)">Id</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.OpName)">Name</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Access1)">Access 1</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Access2)">Access 2</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Access3)">Access 3</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<OperatorModel, object>(x=>x.Description)">Description</MudTableSortLabel></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Select">
+            <MudCheckBox Value="context.SelectedToBeDeleted" />
+        </MudTd>
+        <MudTd DataLabel="Id">@context.OpId</MudTd>
+        <MudTd DataLabel="Name">@context.OpName</MudTd>
+        <MudTd DataLabel="Access 1">
+            <MudCheckBox Value="context.Access1" ReadOnly="true" />
+        </MudTd>
+        <MudTd DataLabel="Access 2">
+            <MudCheckBox Value="context.Access2" ReadOnly="true" />
+        </MudTd>
+        <MudTd DataLabel="Access 3">
+            <MudCheckBox Value="context.Access3" ReadOnly="true" />
+        </MudTd>
+        <MudTd DataLabel="Description">@context.Description</MudTd>
+    </RowTemplate>
+</MudTable>
