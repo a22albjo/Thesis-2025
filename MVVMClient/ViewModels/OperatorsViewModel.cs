@@ -15,15 +15,15 @@ namespace MVVMClient.ViewModels
             OperatorsData = new ObservableCollection<OperatorModel>();
         }
 
-        private OperatorModel? _operatorBeforeEdit;
-
         [ObservableProperty]
         private ObservableCollection<OperatorModel> operatorsData;
+
+        private OperatorModel? _operatorBeforeEdit;
 
         public async Task FetchOperators()
         {
             var operatorsResponse = await _httpClient.GetFromJsonAsync<List<OperatorModel>>("https://localhost:7200/Operator");
-
+            if (operatorsResponse == null) return;
             OperatorsData.Clear();
             foreach (var operatorResponse in operatorsResponse)
             {
@@ -42,6 +42,8 @@ namespace MVVMClient.ViewModels
                 Access3 = false,
                 SelectedToBeDeleted = false,
                 Description = "",
+                ChangedBy = "config-client",
+                ChangedTime = DateTime.Now,
             });
         }
 

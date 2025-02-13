@@ -1,7 +1,7 @@
 ﻿@using MVVMClient.Models
 @inject IOperatorsViewModel OperatorsViewModel
 
-<h3 style="margin-top:20px">Operators Table</h3>
+<h3 style="margin-top:20px">Operators table</h3>
 
 <MudButton OnClick="OperatorsViewModel.AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
 <MudTable T="OperatorModel" Items=@OperatorsViewModel.OperatorsData FixedHeader="true"
