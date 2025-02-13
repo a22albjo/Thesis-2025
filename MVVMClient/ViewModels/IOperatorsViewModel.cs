@@ -7,5 +7,10 @@ namespace MVVMClient.ViewModels
     {
         ObservableCollection<OperatorModel> OperatorsData { get; }
         Task FetchOperators();
+        void AddOperator();
+        void RemoveSelectedOperators();
+        void StartEditing(object Op);
+        void SaveChanges();
+        void CancelEditing(object Op);
     }
 }

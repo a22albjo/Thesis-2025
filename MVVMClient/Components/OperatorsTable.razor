@@ -3,9 +3,11 @@
 
 <h3 style="margin-top:20px">Operators Table</h3>
 
+<MudButton OnClick="OperatorsViewModel.AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
 <MudTable T="OperatorModel" Items=@OperatorsViewModel.OperatorsData FixedHeader="true"
           Bordered="true" Dense="true" Hover="true" CanCancelEdit="true" EditTrigger="TableEditTrigger.EditButton"
-          SortLabel="Sort By" CommitEditTooltip="Commit Edit" >
+          SortLabel="Sort By" CommitEditTooltip="Commit Edit" OnCommitEditClick="OperatorsViewModel.SaveChanges"
+          RowEditCancel="OperatorsViewModel.CancelEditing" RowEditPreview="OperatorsViewModel.StartEditing">
     <ColGroup>
         <col style="width:50px;" />
     </ColGroup>
@@ -35,4 +37,34 @@
         </MudTd>
         <MudTd DataLabel="Description">@context.Description</MudTd>
     </RowTemplate>
+    <RowEditingTemplate>
+        <MudTd>
+            <MudCheckBox @bind-Value="context.SelectedToBeDeleted" />
+        </MudTd>
+        <MudTd DataLabel="Id">
+            <MudTextField @bind-Value="context.OpId" Style="font-size:14px" />
+        </MudTd>
+        <MudTd DataLabel="Name">
+            <MudTextField @bind-Value="context.OpName" Style="font-size:14px" />
+        </MudTd>
+        <MudTd DataLabel="Access 1">
+            <MudCheckBox @bind-Value="context.Access1" />
+        </MudTd>
+        <MudTd DataLabel="Access 2">
+            <MudCheckBox @bind-Value="context.Access2" />
+        </MudTd>
+        <MudTd DataLabel="Access 3">
+            <MudCheckBox @bind-Value="context.Access3" />
+        </MudTd>
+        <MudTd DataLabel="Description">
+            <MudTextField @bind-Value="context.Description" Style="font-size:14px" />
+        </MudTd>
+    </RowEditingTemplate>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+    <EditButtonContent Context="button">
+        <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Class="pa-0" OnClick="@button.ButtonAction" Disabled="@button.ButtonDisabled" />
+    </EditButtonContent>
 </MudTable>
+<MudButton OnClick="OperatorsViewModel.RemoveSelectedOperators" Color="@Color.Error" Class="remove-item-btn">Remove Selected Operators</MudButton>

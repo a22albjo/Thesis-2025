@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using MVVMClient.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MVVMClient.ViewModels
 {
@@ -29,6 +28,31 @@ namespace MVVMClient.ViewModels
                 OperatorsData.Add(operatorResponse);
             }
             OnPropertyChanged(nameof(OperatorsData));
+        }
+
+        public void AddOperator()
+        {
+            return;
+        }
+
+        public void RemoveSelectedOperators()
+        {
+            return;
+        }
+
+        public void StartEditing(object Op)
+        {
+            return;
+        }
+
+        public void CancelEditing(object Op)
+        {
+            return;
+        }
+
+        public void SaveChanges()
+        {
+            return;
         }
     }
 }
