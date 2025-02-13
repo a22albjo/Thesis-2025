@@ -6,8 +6,8 @@
 <MudButton OnClick="OperatorsViewModel.AddOperator" Color="@Color.Success" Class="add-item-btn">Add New Operator</MudButton>
 <MudTable T="OperatorModel" Items=@OperatorsViewModel.OperatorsData FixedHeader="true"
           Bordered="true" Dense="true" Hover="true" CanCancelEdit="true" EditTrigger="TableEditTrigger.EditButton"
-          SortLabel="Sort By" CommitEditTooltip="Commit Edit" OnCommitEditClick="OperatorsViewModel.SaveChanges"
-          RowEditCancel="OperatorsViewModel.CancelEditing" RowEditPreview="OperatorsViewModel.StartEditing">
+          SortLabel="Sort By" CommitEditTooltip="Commit Edit" RowEditCancel="OperatorsViewModel.CancelEditing"
+          RowEditPreview="OperatorsViewModel.StartEditing">
     <ColGroup>
         <col style="width:50px;" />
     </ColGroup>
@@ -22,7 +22,7 @@
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Select">
-            <MudCheckBox Value="context.SelectedToBeDeleted" />
+            <MudCheckBox @bind-Value="context.SelectedToBeDeleted" />
         </MudTd>
         <MudTd DataLabel="Id">@context.OpId</MudTd>
         <MudTd DataLabel="Name">@context.OpName</MudTd>

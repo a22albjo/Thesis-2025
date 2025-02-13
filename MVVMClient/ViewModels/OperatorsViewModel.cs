@@ -15,6 +15,8 @@ namespace MVVMClient.ViewModels
             OperatorsData = new ObservableCollection<OperatorModel>();
         }
 
+        private OperatorModel? _operatorBeforeEdit;
+
         [ObservableProperty]
         private ObservableCollection<OperatorModel> operatorsData;
 
@@ -27,33 +29,53 @@ namespace MVVMClient.ViewModels
             {
                 OperatorsData.Add(operatorResponse);
             }
-            OnPropertyChanged(nameof(OperatorsData));
         }
 
         public void AddOperator()
         {
-            return;
+            OperatorsData.Add(new OperatorModel
+            {
+                OpId = "New",
+                OpName = "New",
+                Access1 = false,
+                Access2 = false,
+                Access3 = false,
+                SelectedToBeDeleted = false,
+                Description = "",
+            });
         }
 
         public void RemoveSelectedOperators()
         {
-            return;
+            var newOperatorsState = OperatorsData.Where(op => !op.SelectedToBeDeleted).ToList();
+            OperatorsData = new ObservableCollection<OperatorModel>(newOperatorsState);
         }
 
-        public void StartEditing(object Op)
+        public void BackupOperator(object operatorData)
         {
-            return;
+            _operatorBeforeEdit = new OperatorModel
+            {
+                OpId = ((OperatorModel)operatorData).OpId,
+                OpName = ((OperatorModel)operatorData).OpName,
+                Access1 = ((OperatorModel)operatorData).Access1,
+                Access2 = ((OperatorModel)operatorData).Access2,
+                Access3 = ((OperatorModel)operatorData).Access3,
+                Description = ((OperatorModel)operatorData).Description
+            };
         }
 
-        public void CancelEditing(object Op)
+        public void CancelEditing(object operatorData)
         {
-            return;
-        }
-
-        public void SaveChanges()
-        {
-            return;
+            ((OperatorModel)operatorData).OpId = _operatorBeforeEdit.OpId;
+            ((OperatorModel)operatorData).OpName = _operatorBeforeEdit.OpName;
+            ((OperatorModel)operatorData).Access1 = _operatorBeforeEdit.Access1;
+            ((OperatorModel)operatorData).Access2 = _operatorBeforeEdit.Access2;
+            ((OperatorModel)operatorData).Access3 = _operatorBeforeEdit.Access3;
+            ((OperatorModel)operatorData).Description = _operatorBeforeEdit.Description;
         }
     }
 }
+
+
+
 

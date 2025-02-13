@@ -9,8 +9,7 @@ namespace MVVMClient.ViewModels
         Task FetchOperators();
         void AddOperator();
         void RemoveSelectedOperators();
-        void StartEditing(object Op);
-        void SaveChanges();
+        void BackupOperator(object Op);
         void CancelEditing(object Op);
     }
 }
