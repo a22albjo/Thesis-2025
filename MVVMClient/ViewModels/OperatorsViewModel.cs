@@ -13,6 +13,7 @@ namespace MVVMClient.ViewModels
         {
             _httpClient = httpClient;
             OperatorsData = new ObservableCollection<OperatorModel>();
+            FetchOperators();
         }
 
         [ObservableProperty]
@@ -29,6 +30,7 @@ namespace MVVMClient.ViewModels
             {
                 OperatorsData.Add(operatorResponse);
             }
+            OnPropertyChanged(nameof(OperatorsData));
         }
 
         public void AddOperator()
@@ -45,12 +47,19 @@ namespace MVVMClient.ViewModels
                 ChangedBy = "config-client",
                 ChangedTime = DateTime.Now,
             });
+            OnPropertyChanged(nameof(OperatorsData));
         }
 
         public void RemoveSelectedOperators()
         {
             var newOperatorsState = OperatorsData.Where(op => !op.SelectedToBeDeleted).ToList();
             OperatorsData = new ObservableCollection<OperatorModel>(newOperatorsState);
+            OnPropertyChanged(nameof(OperatorsData));
+        }
+
+        public void ChangeMade()
+        {
+            OnPropertyChanged(nameof(OperatorsData));
         }
 
         public void BackupOperator(object operatorData)

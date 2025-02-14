@@ -2,10 +2,10 @@
 {
     public partial class OperatorsTable
     {
-
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            await OperatorsViewModel.FetchOperators();
+            OperatorsViewModel.PropertyChanged += (_, _) => StateHasChanged();
+            base.OnInitialized();
         }
     }
 }
