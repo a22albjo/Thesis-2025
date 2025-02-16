@@ -62,9 +62,6 @@
             <MudTextField @bind-Value="_editingOperator.Description" Style="font-size:14px" />
         </MudTd>
     </RowEditingTemplate>
-    <PagerContent>
-        <MudTablePager />
-    </PagerContent>
     <EditButtonContent Context="button">
         <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Class="pa-0" OnClick="@button.ButtonAction" Disabled="@button.ButtonDisabled" />
     </EditButtonContent>
