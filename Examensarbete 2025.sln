@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7952B8E6-6611-4756-93C6-CF18F3B036D1}"
 	ProjectSection(SolutionItems) = preProject
 		MeasuringRenderingTimeScript.js = MeasuringRenderingTimeScript.js
+		MeasuringTimeToChangeState.js = MeasuringTimeToChangeState.js
 	EndProjectSection
 EndProject
 Global
