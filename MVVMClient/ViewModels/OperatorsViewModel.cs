@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using MVVMClient.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MVVMClient.ViewModels
 {
@@ -52,9 +53,18 @@ namespace MVVMClient.ViewModels
 
         public void RemoveSelectedOperators()
         {
-            var newOperatorsState = OperatorsData.Where(op => !op.SelectedToBeDeleted).ToList();
-            OperatorsData = new ObservableCollection<OperatorModel>(newOperatorsState);
-            OnPropertyChanged(nameof(OperatorsData));
+            //The fluxor way
+            //var newOperatorsState = OperatorsData.Where(op => !op.SelectedToBeDeleted).ToList();
+            //OperatorsData = new ObservableCollection<OperatorModel>(newOperatorsState);
+            //OnPropertyChanged(nameof(OperatorsData));
+
+            for (int i = OperatorsData.Count - 1; i >= 0; i--)
+            {
+                if (OperatorsData[i].SelectedToBeDeleted)
+                {
+                    OperatorsData.RemoveAt(i);
+                }
+            }
         }
 
         public void ChangeMade()
