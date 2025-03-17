@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using MVVMClient.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MVVMClient.ViewModels
 {
@@ -24,14 +23,14 @@ namespace MVVMClient.ViewModels
 
         public async Task FetchOperators()
         {
-            var operatorsResponse = await _httpClient.GetFromJsonAsync<List<OperatorModel>>("https://localhost:7200/Operator");
+            var operatorsResponse = await _httpClient.GetFromJsonAsync<List<OperatorModel>>("http://localhost:7200/Operator");
             if (operatorsResponse == null) return;
             OperatorsData.Clear();
             foreach (var operatorResponse in operatorsResponse)
             {
                 OperatorsData.Add(operatorResponse);
             }
-            OnPropertyChanged(nameof(OperatorsData));
+            ChangeMade();
         }
 
         public void AddOperator()
@@ -48,21 +47,17 @@ namespace MVVMClient.ViewModels
                 ChangedBy = "config-client",
                 ChangedTime = DateTime.Now,
             });
-            OnPropertyChanged(nameof(OperatorsData));
+            ChangeMade();
         }
 
         public void RemoveSelectedOperators()
         {
-            //The fluxor way
-            //var newOperatorsState = OperatorsData.Where(op => !op.SelectedToBeDeleted).ToList();
-            //OperatorsData = new ObservableCollection<OperatorModel>(newOperatorsState);
-            //OnPropertyChanged(nameof(OperatorsData));
-
             for (int i = OperatorsData.Count - 1; i >= 0; i--)
             {
                 if (OperatorsData[i].SelectedToBeDeleted)
                 {
                     OperatorsData.RemoveAt(i);
+                    ChangeMade();
                 }
             }
         }
