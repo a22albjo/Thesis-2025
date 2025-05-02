@@ -57,9 +57,9 @@ namespace MVVMClient.ViewModels
                 if (OperatorsData[i].SelectedToBeDeleted)
                 {
                     OperatorsData.RemoveAt(i);
-                    ChangeMade();
                 }
             }
+            ChangeMade();
         }
 
         public void ChangeMade()
